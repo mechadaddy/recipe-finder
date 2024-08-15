@@ -74,8 +74,15 @@
 
 
 <div class="container-fluid mt-3">
-    <div class="recipe-card"  style="background-color: rgba(128, 128, 128, 0.356); height: 40vh; border: 1px solid black;">
-        <p style = "margin: 10px;"><%= recipe %></p>
+    <div class="recipe-card">
+        <div class="recipe-words" style="margin: 10px">
+            <% if (locals.recipe) { %>
+                <%- include ("partials/recipe-card.ejs") %>
+            <% } else { %>
+                <p>No Recipe has been slected yet</p>
+            <% } %>
+        </div>
+
     </div>
 </div>
 

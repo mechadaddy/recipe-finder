@@ -1,0 +1,57 @@
+<h2><%= recipe.title%> </h2>
+
+<div class="nutrition-info">
+    <h3>Nutrition Information</h3>
+    <ul>
+        <li>Calories: <%= nutrition.calories %></li>
+        <li>Carbohydrates: <%= nutrition.carbs %></li>
+        <li>Fat: <%= nutrition.fat %></li>
+        <li>Protein: <%= nutrition.protein %></li>
+    </ul>
+</div>
+
+<div class="equipment-list">
+    <h3>Equipment</h3>
+    <ol>
+        <% if (equipment.equipment.length > 0) { %>
+            <% equipment.equipment.forEach(function(equip) { %>  
+            <li>
+                <%= equip.name %>
+            </li>
+            <% }) %>
+        <% } else { %>
+            <li>No equipment available.</li>
+        <% } %>
+    </ol>
+</div>
+
+<div class="steps-list">
+    <h3>Steps</h3>
+    <ol>
+        <% if (recipe.analyzedInstructions.length > 0) { %>
+            <% recipe.analyzedInstructions[0].steps.forEach(function(step, index) { %>
+            <li>
+                <%= step.step %>
+            </li>
+            <% }) %>
+        <% } else { %>
+            <li>No instructions available.</li>
+        <% } %>
+    </ol>
+</div>
+
+<div class="ingredients-list">
+    <h3>Ingredients</h3>
+    <ul>  
+        <% recipe.extendedIngredients.forEach(function(ingredient) { %>
+        <li>
+            <%= ingredient.amount %> <%= ingredient.unit %> of <%= ingredient.name %>
+        </li>
+        <% }) %>
+    </ul>
+</div>
+
+
+
+
+
