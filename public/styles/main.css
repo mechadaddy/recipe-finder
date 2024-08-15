@@ -1,78 +1,171 @@
-footer {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-}
-/*
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  
-  button {
-    font-size: 4rem;
-  }
-  
-  .buttons button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: white;
-    cursor: pointer;
-    padding: 0;
-    margin: 0 10px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .buttons button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .buttons button img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-*/
-  input[type="checkbox"] {
-    position: relative;
-    width: 40px;
-    height: 20px;
-    -webkit-appearance: none;
-    background-color: #c6c6c6;
-    outline: none;
-    border-radius: 20px;
-    transition: background-color 0.2s;
-    cursor: pointer;
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  padding: 20px;
 }
 
-input[type="checkbox"]:checked {
-    background-color: #4CAF50;
+.recipe-card {
+  background-color: rgba(128, 128, 128, 0.122);
+  border-radius: 1%
 }
 
-input[type="checkbox"]::before {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    top: 1px;
-    left: 1px;
-    background-color: #fff;
-    transition: transform 0.2s;
+.recipe-words {
+  padding: 5px;
 }
 
-input[type="checkbox"]:checked::before {
-    transform: translateX(20px);
+.container-fluid {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Hide filters initially */
+.filters {
+  display: none;
+  position: absolute; /* Make it overlay */
+  top: 75px; /* Adjust as needed */
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Ensure it appears on top */
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filters.show {
+  display: block;
+}
+
+.filter-toggle-btn {
+  background-color: #4f4caf;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-toggle-btn:hover {
+  background-color: #45a049;
+}
+
+/* Styling for each section */
+.section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Switch container styling for consistent appearance */
+/* Ensure consistent layout with radio buttons */
+.switch-container {
+  display: flex;
+  justify-content: space-between; /* Space between label and switch */
+  align-items: center;
+  width: 100%; /* Ensure full width for flexibility */
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Switches layout */
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Increase the clickable area by adjusting label padding */
+.switch-container label {
+  font-size: 16px; /* Optional: Make label text larger */
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+}
+
+
+/* Switch toggle */
+.switch-container input[type="checkbox"] {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  -webkit-appearance: none;
+  background: #ddd;
+  outline: none;
+  border-radius: 25px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.switch-container input[type="checkbox"]:checked {
+  background-color: #4caf50; /* Color change when selected */
+  box-shadow: 0 0 5px #4caf50;
+}
+
+/* Switch toggle design */
+.switch-container input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 2.5px;
+  left: 2.5px;
+  transition: 0.4s;
+}
+
+.switch-container input[type="checkbox"]:checked::before {
+  transform: translateX(25px); /* Toggle position when checked */
+}
+
+/* Hover effect for better user interaction */
+.switch-container:hover {
+  background-color: #f1f1f1;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Increase the size of radio buttons */
+input[type="radio"] {
+  transform: scale(1.5); /* Increase size */
+  margin-left: 10px; /* Spacing between radio button and label */
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+  .switch-container {
+      width: 48%; /* Two items per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .switch-container {
+      width: 100%; /* One item per row on extra small screens */
+  }
+}
+
+/* Styling for Submit button */
+button[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.section p {
+  width: 100%;
+  text-align: center;
 }

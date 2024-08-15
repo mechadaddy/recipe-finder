@@ -1,90 +1,179 @@
-<%- include ("partials/header.ejs") %>
+<%- include("partials/header.ejs") %>
+
+<!-- Button to toggle filters -->
 <div class="container-fluid">
-    <h1>Find me a Recipe</h1>
-</div>
+    <div class="row">
 
-<!--
+        <button class="filter-toggle-btn col" onclick="toggleFilters()">Show/Hide Filters</button>
 
-<form action="/recipe" method="POST" class="buttons">
-    <button type="submit" value="chicken" name="choice">🍗</button>
-    <button type="submit" value="beef" name="choice">🥩</button>
-</form>
+            
 
-<form action="/recipe" method="POST" class="buttons">
-    <button type="submit" value="dessert" name="choice">🍰</button>
-    <button type="submit" value="vegitarian" name="choice">🫛</button>
-</form>
-
--->
-<div class="container-fluid">
-    <form action="/filter" method="POST">
-        <div class="row">
-                <div class="section" style="border-bottom: 1px solid black">
-                    <p class="mt-2">Dish Base</p>
-                    <label for="toggle1">Chicken</label>
-                    <input type="radio" id="toggle1" name="dish_base" value="chicken">
-        
-                    <label for="toggle2">Beef</label>
-                    <input type="radio" id="toggle2" name="dish_base" value="beef">
-        
-                    <label for="toggle3">Fish</label>
-                    <input type="radio" id="toggle3" name="dish_base" value="fish">
-        
-                    <label for="toggle4">Vegetarian</label>
-                    <input type="radio" id="toggle4" name="dish_base" value="vegetarian">
-                </div>
-
-                <div class="section" style = "border-bottom: 1px solid black">
-                    <p class="mt-2">Dish Type</p>
-                    <label for="toggle5">Main Dish</label>
-                    <input type="radio" id="toggle5" name="dish_type" value="main_dish">
-        
-                    <label for="toggle6">Pasta</label>
-                    <input type="radio" id="toggle6" name="dish_type" value="pasta">
-        
-                    <label for="toggle7">Appetizer</label>
-                    <input type="radio" id="toggle7" name="dish_type" value="appetizer">
-        
-                    <label for="toggle8">Salad</label>
-                    <input type="radio" id="toggle8" name="dish_type" value="salad">
-                </div>
-        
-                <div class="section" style = "border-bottom: 1px solid black">
-                    <p class="mt-2">Allergens</p>
-                    <label for="toggle9">Nuts</label>
-                    <input type="radio" id="toggle9" name="allergens" value="nuts">
-        
-                    <label for="toggle10">Gluten</label>
-                    <input type="radio" id="toggle10" name="allergens" value="gluten">
-        
-                    <label for="toggle11">Vegan</label>
-                    <input type="radio" id="toggle11" name="allergens" value="vegan">
-        
-                    <label for="toggle12">Dairy</label>
-                    <input type="radio" id="toggle12" name="allergens" value="dairy">
-                </div>
-        
-            </div>
-
-        
-        <button type="submit" style="width: 100%" class="mt-3">Submit</button>
     </div>
-    </form>
 </div>
 
+<!-- Filters Menu -->
+<div class="filters">
+  <div class="container-fluid">
+    <form action="/filter" method="POST">
+        <button type="submit" class="col mb-2">Submit</button>
+      <div class="row">
 
-<div class="container-fluid mt-3">
-    <div class="recipe-card">
-        <div class="recipe-words" style="margin: 10px">
-            <% if (locals.recipe) { %>
-                <%- include ("partials/recipe-card.ejs") %>
-            <% } else { %>
-                <p>No Recipe has been slected yet</p>
-            <% } %>
+        <!-- Dish Base Section -->
+        <div class="section dish-base">
+            <p class="mt-2">Dish Base</p>
+        
+            <div class="switch-container">
+                <label for="toggle1">Chicken</label>
+                <input type="checkbox" id="toggle1" name="dish_base" value="chicken">
+            </div>
+        
+            <div class="switch-container">
+                <label for="toggle2">Beef</label>
+                <input type="checkbox" id="toggle2" name="dish_base" value="beef">
+            </div>
+        
+            <div class="switch-container">
+                <label for="toggle3">Fish</label>
+                <input type="checkbox" id="toggle3" name="dish_base" value="fish">
+            </div>
+        
+            <div class="switch-container">
+                <label for="toggle4">Vegetarian</label>
+                <input type="checkbox" id="toggle4" name="dish_base" value="vegetarian">
+            </div>
+        
+            <div class="switch-container">
+                <label for="toggle5">Pork</label>
+                <input type="checkbox" id="toggle5" name="dish_base" value="pork">
+            </div>
+        
+            <div class="switch-container">
+                <label for="toggle6">Seafood</label>
+                <input type="checkbox" id="toggle6" name="dish_base" value="seafood">
+            </div>
         </div>
 
+<!-- Dish Type Section -->
+<div class="section dish-type">
+    <p class="mt-2">Dish Type (select one)</p>
+  
+    <div class="switch-container">
+      <label for="toggle7">Main Course</label>
+      <input type="radio" id="toggle7" name="dish_type" value="main_course">
+    </div>
+  
+    <div class="switch-container">
+      <label for="toggle8">Side Dish</label>
+      <input type="radio" id="toggle8" name="dish_type" value="side_dish">
+    </div>
+  
+    <div class="switch-container">
+      <label for="toggle9">Dessert</label>
+      <input type="radio" id="toggle9" name="dish_type" value="dessert">
+    </div>
+  
+    <div class="switch-container">
+      <label for="toggle10">Appetizer</label>
+      <input type="radio" id="toggle10" name="dish_type" value="appetizer">
+    </div>
+  
+    <div class="switch-container">
+      <label for="toggle11">Salad</label>
+      <input type="radio" id="toggle11" name="dish_type" value="salad">
+    </div>
+  </div>
+
+        <!-- Allergens Section -->
+<!-- Allergens Section -->
+<div class="section allergens" style="border-bottom: 1px solid black">
+    <p class="mt-2">Allergens</p>
+
+    <div class="switch-container">
+        <label for="allergen1">Dairy</label>
+        <input type="checkbox" id="allergen1" name="allergens" value="dairy">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen2">Egg</label>
+        <input type="checkbox" id="allergen2" name="allergens" value="egg">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen3">Gluten</label>
+        <input type="checkbox" id="allergen3" name="allergens" value="gluten">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen4">Grain</label>
+        <input type="checkbox" id="allergen4" name="allergens" value="grain">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen5">Peanut</label>
+        <input type="checkbox" id="allergen5" name="allergens" value="peanut">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen6">Seafood</label>
+        <input type="checkbox" id="allergen6" name="allergens" value="seafood">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen7">Sesame</label>
+        <input type="checkbox" id="allergen7" name="allergens" value="sesame">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen8">Shellfish</label>
+        <input type="checkbox" id="allergen8" name="allergens" value="shellfish">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen9">Soy</label>
+        <input type="checkbox" id="allergen9" name="allergens" value="soy">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen10">Sulfite</label>
+        <input type="checkbox" id="allergen10" name="allergens" value="sulfite">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen11">Tree Nut</label>
+        <input type="checkbox" id="allergen11" name="allergens" value="tree_nut">
+    </div>
+
+    <div class="switch-container">
+        <label for="allergen12">Wheat</label>
+        <input type="checkbox" id="allergen12" name="allergens" value="wheat">
     </div>
 </div>
 
 
-<%- include ("partials/footer.ejs") %>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Content below the filters -->
+<div class="container-fluid mt-3 content-under-filters">
+  <div class="recipe-card">
+    <div class="recipe-words" style="margin: 10px">
+      <% if (locals.recipe) { %>
+        <%- include("partials/recipe-card.ejs") %>
+      <% } else { %>
+        <p>No Recipe has been selected yet</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
+
+<script>
+    function toggleFilters() {
+      var filters = document.querySelector('.filters');
+      filters.classList.toggle('show');
+    }
+  </script>
